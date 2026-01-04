@@ -143,29 +143,29 @@ bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
 # resize window (you can also use the mouse for that):
-#mode "resize" {
+mode "resize" {
 # These bindings trigger as soon as you enter the resize mode
 # Pressing left will shrink the window's width.
 # Pressing right will grow the window's width.
 # Pressing up will shrink the window's height.
 # Pressing down will grow the window's height.
-#        bindsym h resize shrink width 10 px or 10 ppt
-#        bindsym j resize grow height 10 px or 10 ppt
-#        bindsym k resize shrink height 10 px or 10 ppt
-#        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 1 px or 1 ppt
+        bindsym j resize grow height 1 px or 1 ppt
+        bindsym k resize shrink height 1 px or 1 ppt
+        bindsym l resize grow width 1 px or 1 ppt
 
 # same bindings, but for the arrow keys
-#        bindsym Left resize shrink width 10 px or 10 ppt
-#        bindsym Down resize grow height 10 px or 10 ppt
-#        bindsym Up resize shrink height 10 px or 10 ppt
-#        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
 
 # back to normal: Enter or Escape
 #	     bindsym Return mode "default"
-#        bindsym Escape mode "default"
-#}
+      bindsym Escape mode "default"
+}
 
-#bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize"
 
 ######################################
 # keybindings for different actions: #
@@ -176,6 +176,8 @@ bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+q kill
+
+bindsym $mod+F4 kill
 
 # exit-menu
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
@@ -212,10 +214,10 @@ bindsym $mod+j focus up
 bindsym $mod+o focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+b move left
@@ -263,8 +265,8 @@ bindsym $mod+equal exec --no-startup-id ~/.config/i3/scripts/volume_brightness.s
 
 
 # brightness 
-bindsym $mod+Shift+minus exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_down
-bindsym $mod+Shift+equal exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_up
+bindsym $mod+Shift+F10 exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_down
+bindsym $mod+Shift+F11 exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_up
 
 # use meta keys without showing osc
 #bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
@@ -297,7 +299,9 @@ bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 ## App shortcuts
 bindsym $mod+w exec --no-startup-id /usr/bin/brave
 bindsym $mod+n exec --no-startup-id /usr/bin/thunar
-bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+## Screenshot shortcuts
+bindsym Print exec flameshot full 
+bindsym $mod+Shift+s exec flameshot gui
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
@@ -308,11 +312,11 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -329,9 +333,9 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Alacritty"] $ws1
-assign [class="(?i)Brave"] $ws2
-assign [class="Thunar"] $ws3
+# assign [class="Alacritty"] $ws1
+# assign [class="(?i)Brave"] $ws2
+# assign [class="Thunar"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="TelegramDesktop"] $ws5
 
@@ -399,12 +403,12 @@ exec --no-startup-id dex --autostart --environment i3
 #exec_always --no-startup-id conky
 
 # start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
+# uncoi3barmment the next line, use arandr to setup displays and save the file as monitor:
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
-# exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+exec --no-startup-id sleep 2 && nitrogen --restore
+# exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -587,7 +591,7 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 
 ## rofi bindings for window menu ($mod+t /F10 optional disabled)
 
-bindsym $mod+t exec --no-startup-id rofi -show window \
+bindsym $mod+m exec --no-startup-id rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 #bindsym F10 exec --no-startup-id rofi -show window \
@@ -598,3 +602,25 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #exec --no-startup-id greenclip daemon>/dev/null
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
+
+# Move the focused window to the scratchpad (Mod+Shift+-)
+bindsym $mod+Shift+minus move scratchpad
+
+# Show (or cycle through) scratchpad windows (Mod+Shift+=)
+bindsym $mod+Shift+plus scratchpad show
+
+
+# exec_always --no-startup-id xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60 --right-of eDP
+
+# Map workspaces 6–0 to HDMI monitor
+# workspace 6 output HDMI-A-0
+# workspace 7 output HDMI-A-0
+# workspace 8 output HDMI-A-0
+# workspace 9 output HDMI-A-0
+# workspace 10 output HDMI-A-0   # 0 is workspace 10 in i3
+# 
+# bindsym $mod+Ctrl+Left move container to output left
+# bindsym $mod+Ctrl+Right move container to output right
+
+# reverse config for laptop only
+# xrandr --output HDMI-A-0 --off --output eDP --auto
